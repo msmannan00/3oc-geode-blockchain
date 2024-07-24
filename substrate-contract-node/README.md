@@ -20,7 +20,7 @@ for a production deployment, but a great fit for development and testing:_
     amount of time by setting the `--finalize-delay-sec` option to a specific value, which specifies the number of seconds 
     to delay before finalizing the blocks. The default value is 1 second.
     ```shell
-    ./target/release/substrate-contracts-node --finalize-delay-sec 5
+    ./target/release/substrate-contract-node --finalize-delay-sec 5
     ```
 * _If no CLI arguments are passed the node is started in development mode
   by default._
@@ -62,7 +62,7 @@ cargo install contracts-node
 To run a local dev node execute
 
 ```bash
-substrate-contracts-node
+substrate-contract-node
 ```
 
 A new chain in temporary directory will be created each time the command is executed. This is the
