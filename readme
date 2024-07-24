@@ -12,37 +12,3 @@ Ensure you have the following installed on your system:
 ## Installation
 
 ### Step 1: Install Rust and Required Components
-
-```sh
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-rustup component add rust-src --toolchain nightly
-rustup target add wasm32-unknown-unknown --toolchain nightly
-
-### Step 2: Build and Run Substrate Contracts Node
-cd substrate-contract-node
-cargo build --release
-./target/release/substrate-contracts-node --dev
-
-### Step 3: Set Up the Client
-cd ..
-cd substrate-contract-client
-npm install 
-cargo install cargo-contract --force --locked
-
-### Step 4: Build the Ink! Smart Contract
-cd abi
-cargo +nightly contract build
-
-### Step 5: Run the Client Application
-cd ..
-node app.js
-
-Project Structure
-
-    substrate-contract-node: Contains the Substrate node configured for contracts.
-    substrate-contract-client: Node.js client to interact with the Substrate node.
-    abi: Directory containing the Ink! smart contract source and build files.
-
-Usage
-
-Follow the installation steps to set up and run the Substrate node and client. After running the node and client application, you can interact with the deployed smart contract.
