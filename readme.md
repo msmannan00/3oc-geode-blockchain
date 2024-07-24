@@ -38,7 +38,7 @@ cd abi
 cargo +nightly contract build
 ```
 ### Step 5: Upload Smart Contract
-  Open Ink! UI:
+  #### Open Ink! UI:
   
       Go to https://ui.use.ink/.
   
