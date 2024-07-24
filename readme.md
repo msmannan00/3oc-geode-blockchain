@@ -69,6 +69,6 @@ substrate-contract-node: Contains the Substrate node configured for contracts.
 substrate-contract-client: Node.js client to interact with the Substrate node.
 abi: Directory containing the Ink! smart contract source and build files.
 
-## Usage
+## Usage 
 
 Follow the installation steps to set up and run the Substrate node and client. After running the node and client application, you can interact with the deployed smart contract.
