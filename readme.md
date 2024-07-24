@@ -50,7 +50,7 @@ To upload smart contract using web interface do the following steps
   
 #### Upload Contract:
     Go to Deploy Contracts > Upload New Contract.
-    Select substrate-contract-client/abi/target/ink/flipper.contract.
+    Select substrate-contract-client/abi/target/ink/{{your contract file name}}.contract.
   
 #### Deploy Contract:
     Set initial parameters if needed.
