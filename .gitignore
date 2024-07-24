@@ -1,0 +1,9 @@
+substrate-contracts-node/**/target/
+substrate-contracts-node/**/*.rs.bk
+substrate-contracts-node/*.swp
+substrate-contracts-node/.wasm-binaries
+substrate-contracts-node/.vscode
+substrate-contracts-node/.DS_Store
+substrate-contracts-node/.idea/
+substrate-contracts-node/rls*.log
+substrate-contracts-node/runtime/Cargo.lock
