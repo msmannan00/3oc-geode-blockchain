@@ -38,31 +38,28 @@ cd abi
 cargo +nightly contract build
 ```
 ### Step 5: Upload Smart Contract
-  #### Open Ink! UI:
+To upload smart contract using web interface do the following steps
+
+#### Open Ink! UI:
+    Go to https://ui.use.ink/.
+ 
+#### Switch to Local Node:
+    Click the Settings icon (gear).
+    Under Node, select Custom Endpoint and enter ws://127.0.0.1:9944.
+    Click Save & Reload.
   
-      Go to https://ui.use.ink/.
+#### Upload Contract:
+    Go to Deploy Contracts > Upload New Contract.
+    Select substrate-contract-client/abi/target/ink/flipper.contract.
   
-  Switch to Local Node:
+#### Deploy Contract:
+    Set initial parameters if needed.
+    Select your account (e.g., Alice).
+    Click Deploy and confirm.
   
-      Click the Settings icon (gear).
-      Under Node, select Custom Endpoint and enter ws://127.0.0.1:9944.
-      Click Save & Reload.
-  
-  Upload Contract:
-  
-      Go to Deploy Contracts > Upload New Contract.
-      Select substrate-contract-client/abi/target/ink/flipper.contract.
-  
-  Deploy Contract:
-  
-      Set initial parameters if needed.
-      Select your account (e.g., Alice).
-      Click Deploy and confirm.
-  
-  Copy and Replace Hash:
-  
-      Copy the displayed contract hash after deployment.
-      Replace the old hash in your code with the new one.
+#### Copy and Replace Hash:
+    Copy the displayed contract hash after deployment.
+    Replace the old hash in your code with the new one.
 
 ### Step 6: Run the Client Application
 ```
