@@ -1,32 +1,48 @@
-# Install Rust (if not already installed)
-# Use a package manager or the official Rust installer instead of curl
+# Substrate Contract Project
 
-# Add Rust Components (adjust based on your needs)
+This repository contains a Substrate contracts node and a client to interact with it. The setup includes building and deploying a sample Ink! smart contract.
+
+## Prerequisites
+
+Ensure you have the following installed on your system:
+- [Rust](https://www.rust-lang.org/tools/install)
+- [Node.js](https://nodejs.org/)
+- [Cargo](https://doc.rust-lang.org/cargo/getting-started/installation.html)
+
+## Installation
+
+### Step 1: Install Rust and Required Components
+
+```sh
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 rustup component add rust-src --toolchain nightly
 rustup target add wasm32-unknown-unknown --toolchain nightly
 
-# Go to substrate-contract-node directory (assuming it exists)
+### Step 2: Build and Run Substrate Contracts Node
 cd substrate-contract-node
-
-# Build substrate-contract-node (replace with your build command)
 cargo build --release
+./target/release/substrate-contracts-node --dev
 
-# Run substrate-contract-node (adjust command based on project configuration)
-# ./target/release/substrate-contract-node --dev
-
-# Go to substrate-contract-client directory (assuming it exists)
-cd ../substrate-contract-client
-
-# Install Node.js dependencies (if not already installed)
-npm install
-
-# Install cargo-contract
+### Step 3: Set Up the Client
+cd ..
+cd substrate-contract-client
+npm install 
 cargo install cargo-contract --force --locked
 
-# Go to abi directory (assuming it contains the ABI definition)
+### Step 4: Build the Ink! Smart Contract
 cd abi
-
-# Build the Substrate contract (adjust command based on contract code location)
 cargo +nightly contract build
 
-# Go back one directory level
+### Step 5: Run the Client Application
+cd ..
+node app.js
+
+Project Structure
+
+    substrate-contract-node: Contains the Substrate node configured for contracts.
+    substrate-contract-client: Node.js client to interact with the Substrate node.
+    abi: Directory containing the Ink! smart contract source and build files.
+
+Usage
+
+Follow the installation steps to set up and run the Substrate node and client. After running the node and client application, you can interact with the deployed smart contract.
