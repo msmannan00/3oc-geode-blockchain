@@ -27,7 +27,6 @@ cargo build --release
 
 ### Step 3: Set Up the Client
 ```
-cd ..
 cd substrate-contract-client
 npm install 
 cargo install cargo-contract --force --locked
