@@ -13,7 +13,6 @@ Ensure you have the following installed on your system:
 
 ### Step 1: Install Rust and Required Components
 
-```sh
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 rustup component add rust-src --toolchain nightly
 rustup target add wasm32-unknown-unknown --toolchain nightly
