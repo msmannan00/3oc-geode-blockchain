@@ -1,19 +1,26 @@
-# Substrate Contract Project
+# Orion Browser
 
-This repository contains a Substrate contracts node and a client to interact with it. The setup includes building and deploying a sample Ink! smart contract.
+## Overview
+The Orion browser is an innovative Android application designed to provide users with a secure and private browsing experience. Utilizing onion routing technology, it ensures enhanced anonymity by encrypting and routing internet traffic through a network of volunteer-operated servers. This unique feature enables users to access the hidden web, also known as the dark web, where conventional search engines cannot index content.
 
-## Prerequisites
+Additionally, the browser facilitates secure access to local webpages, making it a versatile tool for users seeking privacy not only in accessing hidden content but also in exploring local networks securely. The Orion browser prioritizes secure connection establishment, employing encryption protocols to protect user data and communications. Despite its advanced privacy features, the application maintains a user-friendly interface, allowing seamless navigation through both the hidden and local web. Privacy settings and controls are incorporated, empowering users to customize their anonymity levels and security preferences. Regular updates are promised to address emerging threats and maintain the browser's effectiveness
 
-Ensure you have the following installed on your system:
-- [Rust](https://www.rust-lang.org/tools/install)
-- [Node.js](https://nodejs.org/)
-- [Cargo](https://doc.rust-lang.org/cargo/getting-started/installation.html)
+## Features
+- Securely access hidden web content
+- Browse local webpages with enhanced security
+- Onion routing for anonymized browsing
 
-## Installation
+## Technologies Used
+- Android (Java and Kotlin)
+- Gradle
 
-### Step 1: Install Rust and Required Components
+## Getting Started
+Follow the steps below to set up the project locally:
 
-```sh
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-rustup component add rust-src --toolchain nightly
-rustup target add wasm32-unknown-unknown --toolchain nightly
+### Prerequisites
+- Android Studio installed
+- JDK installed
+- Git installed
+
+### Playstore URL
+https://play.google.com/store/apps/details?id=com.hiddenservices.onionservices&hl=en
