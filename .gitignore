@@ -12,6 +12,7 @@ substrate-contract-node/runtime/Cargo.lock
 # client ignores
 substrate-contract-client/node_modules/
 substrate-contract-client/logs
+substrate-contract-client/.idea
 substrate-contract-client/*.log
 substrate-contract-client/npm-debug.log*
 substrate-contract-client/yarn-debug.log*
