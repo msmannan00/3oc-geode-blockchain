@@ -1,0 +1,132 @@
+<!-- public/index.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Substrate Contract Interaction</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        button { margin: 10px 0; }
+        .result { margin-top: 10px; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <h1>Substrate Contract Interaction</h1>
+
+    <h2>Deploy Contract</h2>
+    <button id="deployBtn" onclick="DeployMyContract()">Deploy Contract</button>
+    <div id="deployResult" class="result"></div>
+
+    <h2>Get Contract Value</h2>
+    <input type="text" id="contractAddress" placeholder="Enter contract address" />
+    <button onclick="fetchContractValue()">Get Contract Value</button>
+ 
+
+    <h2>Flip Contract State</h2>
+    <button onclick="flipContractState()">Flip Contract State</button>
+    <p id="result"></p>
+
+    <script>
+         async function DeployMyContract() {
+            const contractAddress = document.getElementById('contractAddress').value;
+            const response = await fetch(`http://localhost:4000/deploy`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+            });
+            console.log(response);
+            const data = await response.json();
+            console.log(data);
+            if (data.txHash) {
+                document.getElementById('deployResult').innerText = `Contract deployed successfully. Transaction Hash: ${data.txHash}`;
+            } else {
+                document.getElementById('deployResult').innerText = data.error;
+            }
+        }
+        
+        async function fetchContractValue() {
+            const contractAddress = document.getElementById('contractAddress').value;
+            console.log(contractAddress);
+            const response = await fetch(`http://localhost:4000/contract/${contractAddress}/value`);
+            const result = await response.json();
+
+            if (result.success) {
+                document.getElementById('result').innerText = `Contract Value: ${JSON.stringify(result.data)}`;
+            } else {
+                document.getElementById('result').innerText = `Error: ${result.message}`;
+            }
+        }
+        async function flipContractState() {
+            const contractAddress = document.getElementById('contractAddress').value;
+            const response = await fetch(`http://localhost:4000/contract/${contractAddress}/flip`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+            });
+            const result = await response.json();
+
+            if (result.success) {
+                document.getElementById('result').innerText = `Flipped Contract State. New Value: ${JSON.stringify(result.data)}`;
+            } else {
+                document.getElementById('result').innerText = `Error: ${result.message}`;
+            }
+        }
+     
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Substrate Contract Viewer</title>
+    <script>
+        async function fetchContractValue() {
+            const contractAddress = document.getElementById('contractAddress').value;
+            console.log(contractAddress);
+            const response = await fetch(`http://localhost:4000/contract/${contractAddress}/value`);
+            const result = await response.json();
+
+            if (result.success) {
+                document.getElementById('result').innerText = `Contract Value: ${JSON.stringify(result.data)}`;
+            } else {
+                document.getElementById('result').innerText = `Error: ${result.message}`;
+            }
+        }
+
+        async function flipContractState() {
+            const contractAddress = document.getElementById('contractAddress').value;
+            const response = await fetch(`http://localhost:4000/contract/${contractAddress}/flip`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+            });
+            const result = await response.json();
+
+            if (result.success) {
+                document.getElementById('result').innerText = `Flipped Contract State. New Value: ${JSON.stringify(result.data)}`;
+            } else {
+                document.getElementById('result').innerText = `Error: ${result.message}`;
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>Substrate Contract Viewer</h1>
+    <input type="text" id="contractAddress" placeholder="Enter Contract Address" />
+    <button onclick="fetchContractValue()">Get Contract Value</button>
+    <button onclick="flipContractState()">Flip Contract State</button>
+    <p id="result"></p>
+</body>
+</html> -->
