@@ -11,6 +11,8 @@
   "license": "ISC",
   "dependencies": {
     "@polkadot/api": "^12.2.1",
-    "@polkadot/api-contract": "^12.2.1"
+    "@polkadot/api-contract": "^12.2.1",
+    "cors": "^2.8.5",
+    "express": "^4.19.2"
   }
 }
