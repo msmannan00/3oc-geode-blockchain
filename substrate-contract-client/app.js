@@ -14,7 +14,7 @@ async function main() {
     const abi = JSON.parse(fs.readFileSync('./abi/target/ink/flipper.json', 'utf8'));
 
     // Create a contract instance
-    const contract = new ContractPromise(api, abi, '5Gu3SrUdjNM6BzULj59zrwVb1a6DxfWsf52de7KRgmmqBVYR');
+    const contract = new ContractPromise(api, abi, '5GSqZs2rLFpz4mGqdUv7xcoBiuNA8mreoW9A46TAxFMca5Uz');
 
     // Create a keyring instance and add the Alice account
     const keyring = new Keyring({ type: 'sr25519' });
