@@ -1,4 +1,4 @@
-# 3OC Smart Contract API
+# 3OC Smart Contract API 
 
 This repository contains a Substrate contracts node and a client to interact with it. The setup includes building and deploying a sample Ink! smart contract.
 
