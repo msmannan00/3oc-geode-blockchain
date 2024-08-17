@@ -1,1 +1,0 @@
-/home/asad/Desktop/Mani/3oc-geode-blockchain/substrate-contract-client/abi/target/ink/release/metadata-gen: /home/asad/Desktop/Mani/3oc-geode-blockchain/substrate-contract-client/abi/lib.rs /tmp/cargo-contract_RNdrYv/.ink/metadata_gen/main.rs

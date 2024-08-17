@@ -27,3 +27,6 @@ substrate-contract-client/*.sublime-project
 substrate-contract-client/*.sublime-workspace
 substrate-contract-client/.DS_Store
 substrate-contract-client/Thumbs.db
+.idea/*
+substrate-contract-client/abi/target/debug/*
+substrate-contract-client/abi/target/ink/*
