@@ -35,17 +35,12 @@ class ContractController {
     }
 
     async buildContract() {
-        try {
-            await buildContract();
-            if (fs.existsSync(this.wasmFilePath) && fs.existsSync(this.abiFilePath)) {
-                await this.readFiles();
-                return this.abiFilePath;
-            } else {
-                throw new Error("Contract files not found");
-            }
-        } catch (error) {
-            console.error('Failed to execute commands:', error.message);
-            throw error;
+        await buildContract();
+        if (fs.existsSync(this.wasmFilePath) && fs.existsSync(this.abiFilePath)) {
+            await this.readFiles();
+            return this.abiFilePath;
+        } else {
+            throw Error("Contract files not found");
         }
     }
 
@@ -91,8 +86,7 @@ class ContractController {
         const alice = this.keyring.addFromUri(config.aliceKey);
         const gasLimit = api.registry.createType('WeightV2', config.gasLimit);
 
-        try {
-            const { result, output } = await contract.query.get(alice.address, { value: this.value, gasLimit });
+        const { result, output } = await contract.query.get(alice.address, { value: this.value, gasLimit });
             await api.disconnect();
 
             if (result.isOk) {
@@ -104,17 +98,13 @@ class ContractController {
                     const { documentation, name, section } = decoded;
 
                     if (error.asModule.index.eq(8) && error.asModule.error.eq('0x06000000')) {
-                        throw new Error('Contract not found');
+                        throw Error('Contract not found');
                     }
-                    throw new Error(`${section}.${name}: ${documentation.join(' ')}`);
+                    throw Error(`${section}.${name}: ${documentation.join(' ')}`);
                 } else {
-                    throw new Error(`Transaction failed with error: ${error.toString()}`);
+                    throw Error(`Transaction failed with error: ${error.toString()}`);
                 }
             }
-        } catch (error) {
-            console.error(`Caught error: ${error.message}`);
-            throw error;
-        }
     }
 
     async flipContractState(contractAddress) {
@@ -136,11 +126,11 @@ class ContractController {
                         const { documentation, name, section } = decoded;
 
                         if (error.asModule.index.eq(8) && error.asModule.error.eq('0x06000000')) {
-                            throw new Error('Contract not found');
+                            throw Error('Contract not found');
                         }
-                        throw new Error(`${section}.${name}: ${documentation.join(' ')}`);
+                        throw Error(`${section}.${name}: ${documentation.join(' ')}`);
                     } else {
-                        throw new Error(`Transaction failed with error: ${error.toString()}`);
+                        throw Error(`Transaction failed with error: ${error.toString()}`);
                     }
                 }
             });
