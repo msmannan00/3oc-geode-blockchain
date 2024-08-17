@@ -1,8 +1,0 @@
-/home/asad/Desktop/Mani/3oc-geode-blockchain/substrate-contract-client/abi/target/debug/deps/libimpl_serde-7301de2d1d625ca1.rmeta: /home/asad/.cargo/registry/src/index.crates.io-6f17d22bba15001f/impl-serde-0.4.0/src/lib.rs /home/asad/.cargo/registry/src/index.crates.io-6f17d22bba15001f/impl-serde-0.4.0/src/serialize.rs
-
-/home/asad/Desktop/Mani/3oc-geode-blockchain/substrate-contract-client/abi/target/debug/deps/libimpl_serde-7301de2d1d625ca1.rlib: /home/asad/.cargo/registry/src/index.crates.io-6f17d22bba15001f/impl-serde-0.4.0/src/lib.rs /home/asad/.cargo/registry/src/index.crates.io-6f17d22bba15001f/impl-serde-0.4.0/src/serialize.rs
-
-/home/asad/Desktop/Mani/3oc-geode-blockchain/substrate-contract-client/abi/target/debug/deps/impl_serde-7301de2d1d625ca1.d: /home/asad/.cargo/registry/src/index.crates.io-6f17d22bba15001f/impl-serde-0.4.0/src/lib.rs /home/asad/.cargo/registry/src/index.crates.io-6f17d22bba15001f/impl-serde-0.4.0/src/serialize.rs
-
-/home/asad/.cargo/registry/src/index.crates.io-6f17d22bba15001f/impl-serde-0.4.0/src/lib.rs:
-/home/asad/.cargo/registry/src/index.crates.io-6f17d22bba15001f/impl-serde-0.4.0/src/serialize.rs:
