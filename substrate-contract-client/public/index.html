@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Substrate Contract Management</title>
+    <link rel="stylesheet" href="styles/styles.css">
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+</head>
+<body>
+    <div id="loader">
+        <img src="images/loader.gif" height="300" width="300" alt="Loading...">
+    </div>
+    <h1>Substrate Contract Management - Web Interaction</h1>
+
+    <div class="container">
+        <div class="option">
+            <h2>Build the Contract</h2>
+            <button id="buildbtn">Build Contract</button>
+            <input type="text" id="contractpath" value="abi/target/ink" readonly>
+            <div id="buildResult" class="result"></div>
+        </div>
+        <div class="option">
+            <h2>Deploy Contract</h2>
+            <button id="deployBtn">Deploy Contract</button>
+            <div id="deployResult" class="result"></div>
+        </div>
+        <div class="option">
+            <h2>Get Contract Value</h2>
+            <input type="text" id="contractAddress" placeholder="Enter contract address" readonly />
+            <button id="getValueBtn">Get Contract Value</button>
+        </div>
+        <div class="option">
+            <h2>Flip Contract State</h2>
+            <button id="flipStateBtn">Flip Contract State</button>
+            <p id="result"></p>
+        </div>
+    </div>
+
+    <script src="../controllers/rootController.js"></script>
+</body>
+</html>
