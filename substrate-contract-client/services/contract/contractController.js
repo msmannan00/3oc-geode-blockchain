@@ -12,34 +12,36 @@ class ContractController {
         this.value = 0;
         this.wasm = null;
         this.abi = null;
-        this.wasm = null;
-        this.abi = null;
 
         this.wasmFilePath = path.join(projectRoot, config.wasmFile);
         this.abiFilePath = path.join(projectRoot, config.abiFile);
+        this.initializeFiles();
+    }
+
+    async initializeFiles() {
         if (fs.existsSync(this.wasmFilePath) && fs.existsSync(this.abiFilePath)) {
-            this.readFiles().then(r => [])
+            await this.readFiles();
         }
     }
 
     async connectToNode() {
         const wsProvider = new WsProvider(config.wsProvider);
-        return await ApiPromise.create({ provider: wsProvider });
+        return ApiPromise.create({ provider: wsProvider });
     }
 
     async readFiles() {
         this.wasm = fs.readFileSync(this.wasmFilePath);
         this.abi = JSON.parse(fs.readFileSync(this.abiFilePath, 'utf8'));
-        return true;
     }
 
     async buildContract() {
         try {
             await buildContract();
-            if (await this.readFiles()) {
+            if (fs.existsSync(this.wasmFilePath) && fs.existsSync(this.abiFilePath)) {
+                await this.readFiles();
                 return this.abiFilePath;
             } else {
-                return "Unable to read files";
+                throw new Error("Contract files not found");
             }
         } catch (error) {
             console.error('Failed to execute commands:', error.message);
@@ -49,7 +51,7 @@ class ContractController {
 
     async deployContract() {
         if (!fs.existsSync(this.wasmFilePath) || !fs.existsSync(this.abiFilePath)) {
-            return "Contract not deployed"
+            return "Contract not deployed";
         }
 
         const api = await this.connectToNode();
@@ -67,7 +69,6 @@ class ContractController {
                                 const [creator, contractAddress] = data;
                                 console.log("Contract Address: " + contractAddress.toString());
                                 resolve(contractAddress.toString());
-
                             }
                         });
                     } else if (result.status.isFinalized) {
@@ -82,7 +83,7 @@ class ContractController {
 
     async getContractValue(contractAddress) {
         if (!fs.existsSync(this.wasmFilePath) || !fs.existsSync(this.abiFilePath)) {
-            return "Contract not deployed"
+            return "Contract not deployed";
         }
 
         const api = await this.connectToNode();
@@ -92,11 +93,23 @@ class ContractController {
 
         try {
             const { result, output } = await contract.query.get(alice.address, { value: this.value, gasLimit });
-
             await api.disconnect();
 
             if (result.isOk) {
                 return output ? output.toHuman() : 'No result returned from contract call';
+            } else if (result.isErr) {
+                const error = result.asErr;
+                if (error.isModule) {
+                    const decoded = api.registry.findMetaError(error.asModule);
+                    const { documentation, name, section } = decoded;
+
+                    if (error.asModule.index.eq(8) && error.asModule.error.eq('0x06000000')) {
+                        throw new Error('Contract not found');
+                    }
+                    throw new Error(`${section}.${name}: ${documentation.join(' ')}`);
+                } else {
+                    throw new Error(`Transaction failed with error: ${error.toString()}`);
+                }
             }
         } catch (error) {
             console.error(`Caught error: ${error.message}`);
@@ -106,7 +119,7 @@ class ContractController {
 
     async flipContractState(contractAddress) {
         if (!fs.existsSync(this.wasmFilePath) || !fs.existsSync(this.abiFilePath)) {
-            return "Contract not deployed"
+            return "Contract not deployed";
         }
 
         const api = await this.connectToNode();
@@ -115,15 +128,27 @@ class ContractController {
         const gasLimit = api.registry.createType('WeightV2', config.gasLimit);
 
         try {
-            if (!fs.existsSync(this.wasmFilePath) || !fs.existsSync(this.abiFilePath)) {
-                return "Contract not deployed"
-            }
-            await contract.tx.flip({ gasLimit, value: this.value }).signAndSend(alice);
+            await contract.tx.flip({ gasLimit, value: this.value }).signAndSend(alice, async (result) => {
+                if (result.isError) {
+                    const error = result.dispatchError;
+                    if (error.isModule) {
+                        const decoded = api.registry.findMetaError(error.asModule);
+                        const { documentation, name, section } = decoded;
+
+                        if (error.asModule.index.eq(8) && error.asModule.error.eq('0x06000000')) {
+                            throw new Error('Contract not found');
+                        }
+                        throw new Error(`${section}.${name}: ${documentation.join(' ')}`);
+                    } else {
+                        throw new Error(`Transaction failed with error: ${error.toString()}`);
+                    }
+                }
+            });
 
             await new Promise(resolve => setTimeout(resolve, 6000));
-
             return await this.getContractValue(contractAddress);
         } catch (error) {
+            console.error(`Caught error: ${error.message}`);
             throw error;
         } finally {
             await api.disconnect();
